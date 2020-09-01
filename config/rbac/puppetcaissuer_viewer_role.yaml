@@ -1,0 +1,20 @@
+# permissions for end users to view puppetcaissuers.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: puppetcaissuer-viewer-role
+rules:
+- apiGroups:
+  - certmanager.puppetca
+  resources:
+  - puppetcaissuers
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - certmanager.puppetca
+  resources:
+  - puppetcaissuers/status
+  verbs:
+  - get
