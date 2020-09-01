@@ -23,7 +23,7 @@ Clone this repo and perform following steps to install controller:
 # make deploy
 ```
 
-Create secret that holds AWS credentials:
+Create secret that holds Puppet CA credentials:
 
 ```
 # cat secret.yaml
