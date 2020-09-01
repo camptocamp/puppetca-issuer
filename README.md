@@ -57,7 +57,7 @@ Create resource PuppetCAIssuer for our controller:
 ```
 # cat issuer.yaml
 
-apiVersion: certmanager.puppetca/v1alpha2
+apiVersion: certmanager.puppetca/v1alpha1
 kind: PuppetCAIssuer
 metadata:
   name: puppetca-issuer
@@ -85,7 +85,7 @@ Apply this configuration:
 Name:         puppetca-issuer
 Namespace:    puppetca-issuer-system
 Labels:       <none>
-Annotations:  API Version:  certmanager.puppetca/v1alpha2
+Annotations:  API Version:  certmanager.puppetca/v1alpha1
 Kind:         PuppetCAIssuer
 ...
 Spec:
