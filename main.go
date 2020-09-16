@@ -74,6 +74,15 @@ func main() {
 		setupLog.Error(err, "unable to create controller", "controller", "PuppetCAIssuer")
 		os.Exit(1)
 	}
+
+	if err = (&controllers.CertificateRequestReconciler{
+		Client:   mgr.GetClient(),
+		Log:      ctrl.Log.WithName("controllers").WithName("CertificateRequest"),
+		Recorder: mgr.GetEventRecorderFor("certificaterequests-controller"),
+	}).SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to create controller", "controller", "CertificateRequest")
+		os.Exit(1)
+	}
 	// +kubebuilder:scaffold:builder
 
 	setupLog.Info("starting manager")

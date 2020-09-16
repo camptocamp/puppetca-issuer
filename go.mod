@@ -5,6 +5,8 @@ go 1.13
 require (
 	github.com/go-logr/logr v0.2.1-0.20200730175230-ee2de8da5be6
 	github.com/gogo/protobuf v1.3.1
+	github.com/golang/groupcache v0.0.0-20191227052852-215e87163ea7
+	github.com/google/gofuzz v1.1.0
 	github.com/jetstack/cert-manager v1.0.1
 	github.com/onsi/ginkgo v1.12.1
 	github.com/onsi/gomega v1.10.1
