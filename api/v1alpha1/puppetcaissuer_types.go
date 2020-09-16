@@ -116,7 +116,7 @@ const (
 	ConditionUnknown ConditionStatus = "Unknown"
 )
 
-// AWSCMIssuerCondition contains condition information for the issuer.
+// PuppetCAIssuerCondition contains condition information for the issuer.
 type PuppetCAIssuerCondition struct {
 	// Type of the condition, currently ('Ready').
 	Type ConditionType `json:"type"`

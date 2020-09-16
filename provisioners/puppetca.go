@@ -26,8 +26,8 @@ import (
 
 var collection = new(sync.Map)
 
-// PuppetCA implements a AWSCM provisioner in charge of signing certificate
-// requests by calling AWS Private CA API's
+// PuppetCA implements a Puppet CA provisioner in charge of signing certificate
+// requests by calling Puppet CA API's
 type PuppetCA struct {
 	name        string
 	provisioner *PuppetCAProvisioner
