@@ -4,7 +4,7 @@ go 1.13
 
 require (
 	github.com/go-logr/logr v0.2.1
-	github.com/go-logr/zapr v0.1.1
+	github.com/go-logr/zapr v0.1.1-0.20200611224502-49ca6b4dc551
 	github.com/jetstack/cert-manager v1.0.1
 	github.com/onsi/ginkgo v1.12.1
 	github.com/onsi/gomega v1.10.1
