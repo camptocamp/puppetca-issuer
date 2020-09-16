@@ -93,15 +93,13 @@ func (r *CertificateRequestReconciler) Reconcile(req ctrl.Request) (ctrl.Result,
 		return ctrl.Result{}, err
 	}
 
-	/*
-		// Check if the PuppetCAIssuer resource has been marked Ready
-		if !PuppetCAIssuerHasCondition(iss, api.PuppetCAIssuerCondition{Type: api.ConditionReady, Status: api.ConditionTrue}) {
-			err := fmt.Errorf("resource %s is not ready", issNamespaceName)
-			log.Error(err, "failed to retrieve PuppetCAIssuer resource", "namespace", req.Namespace, "name", cr.Spec.IssuerRef.Name)
-			_ = r.setStatus(ctx, cr, cmmeta.ConditionFalse, cmapi.CertificateRequestReasonPending, "PuppetCAIssuer resource %s is not Ready", issNamespaceName)
-			return ctrl.Result{}, err
-		}
-	*/
+	// Check if the PuppetCAIssuer resource has been marked Ready
+	if !PuppetCAIssuerHasCondition(iss, api.PuppetCAIssuerCondition{Type: api.ConditionReady, Status: api.ConditionTrue}) {
+		err := fmt.Errorf("resource %s is not ready", issNamespaceName)
+		log.Error(err, "failed to retrieve PuppetCAIssuer resource", "namespace", req.Namespace, "name", cr.Spec.IssuerRef.Name)
+		_ = r.setStatus(ctx, cr, cmmeta.ConditionFalse, cmapi.CertificateRequestReasonPending, "PuppetCAIssuer resource %s is not Ready", issNamespaceName)
+		return ctrl.Result{}, err
+	}
 
 	// Load the provisioner that will sign the CertificateRequest
 	provisioner, ok := provisioners.Load(issNamespaceName)
@@ -132,7 +130,6 @@ func (r *CertificateRequestReconciler) SetupWithManager(mgr ctrl.Manager) error 
 		Complete(r)
 }
 
-/*
 // PuppetCAIssuerHasCondition will return true if the given PuppetCAIssuer resource has
 // a condition matching the provided PuppetCAIssuerCondition. Only the Type and
 // Status field will be used in the comparison, meaning that this function will
@@ -147,7 +144,6 @@ func PuppetCAIssuerHasCondition(iss api.PuppetCAIssuer, c api.PuppetCAIssuerCond
 	}
 	return false
 }
-*/
 
 func (r *CertificateRequestReconciler) setStatus(ctx context.Context, cr *cmapi.CertificateRequest, status cmmeta.ConditionStatus, reason, message string, args ...interface{}) error {
 	completeMessage := fmt.Sprintf(message, args...)
