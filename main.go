@@ -20,6 +20,10 @@ import (
 	"flag"
 	"os"
 
+	puppetcav1alpha2 "github.com/camptocamp/puppetca-issuer/api/v1alpha2"
+
+	certmanager "github.com/jetstack/cert-manager/pkg/apis/certmanager/v1"
+
 	"k8s.io/apimachinery/pkg/runtime"
 	clientgoscheme "k8s.io/client-go/kubernetes/scheme"
 	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
@@ -27,7 +31,6 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	certmanagerv1alpha2 "github.com/camptocamp/puppetca-issuer/api/v1alpha2"
 	"github.com/camptocamp/puppetca-issuer/controllers"
 	// +kubebuilder:scaffold:imports
 )
@@ -40,7 +43,8 @@ var (
 func init() {
 	_ = clientgoscheme.AddToScheme(scheme)
 
-	_ = certmanagerv1alpha2.AddToScheme(scheme)
+	_ = puppetcav1alpha2.AddToScheme(scheme)
+	_ = certmanager.AddToScheme(scheme)
 	// +kubebuilder:scaffold:scheme
 }
 
