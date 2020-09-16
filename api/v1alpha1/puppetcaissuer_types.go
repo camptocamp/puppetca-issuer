@@ -74,16 +74,16 @@ type PuppetCAProvisioner struct {
 	Name string `json:"name"`
 
 	// Reference to URL of the Puppet CA
-	URL SecretKeySelector `json:"url"`
+	URLRef SecretKeySelector `json:"url"`
 
 	// Reference to certificate to access the Puppet CA
-	Cert SecretKeySelector `json:"cert"`
+	CertRef SecretKeySelector `json:"cert"`
 
 	// Reference to certificate to access the Puppet CA
-	Key SecretKeySelector `json:"key"`
+	KeyRef SecretKeySelector `json:"key"`
 
 	// Reference to certificate to access the Puppet CA
-	CaCert SecretKeySelector `json:"cacert"`
+	CaCertRef SecretKeySelector `json:"cacert"`
 }
 
 // ConditionType represents a PuppetCAIssuer condition type.

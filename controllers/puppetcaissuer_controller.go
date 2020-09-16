@@ -29,6 +29,8 @@ import (
 
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 
+	"github.com/camptocamp/puppetca-issuer/provisioners"
+
 	api "github.com/camptocamp/puppetca-issuer/api/v1alpha1"
 )
 
