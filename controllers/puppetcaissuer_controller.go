@@ -135,7 +135,7 @@ func (r *PuppetCAIssuerReconciler) Reconcile(req ctrl.Request) (ctrl.Result, err
 
 func (r *PuppetCAIssuerReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewControllerManagedBy(mgr).
-		For(&certmanagerv1alpha1.PuppetCAIssuer{}).
+		For(&api.PuppetCAIssuer{}).
 		Complete(r)
 }
 
