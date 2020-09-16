@@ -19,7 +19,7 @@ import (
 	"context"
 	"fmt"
 
-	api "github.com/camptocamp/puppetca-issuer/api/v1alpha1"
+	api "github.com/camptocamp/puppetca-issuer/api/v1alpha2"
 	"github.com/camptocamp/puppetca-issuer/provisioners"
 	"github.com/go-logr/logr"
 	apiutil "github.com/jetstack/cert-manager/pkg/api/util"

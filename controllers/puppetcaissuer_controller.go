@@ -32,7 +32,7 @@ import (
 
 	"github.com/camptocamp/puppetca-issuer/provisioners"
 
-	api "github.com/camptocamp/puppetca-issuer/api/v1alpha1"
+	api "github.com/camptocamp/puppetca-issuer/api/v1alpha2"
 )
 
 // PuppetCAIssuerReconciler reconciles a PuppetCAIssuer object
