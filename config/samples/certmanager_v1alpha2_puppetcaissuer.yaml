@@ -1,0 +1,7 @@
+apiVersion: certmanager.puppetca/v1alpha2
+kind: PuppetCAIssuer
+metadata:
+  name: puppetcaissuer-sample
+spec:
+  # Add fields here
+  foo: bar
