@@ -11,11 +11,13 @@ require (
 	github.com/onsi/ginkgo v1.12.1
 	github.com/onsi/gomega v1.10.1
 	golang.org/x/net v0.0.0-20200707034311-ab3426394381
+	golang.org/x/oauth2 v0.0.0-20191202225959-858c2ad4c8b6
 	gonum.org/v1/netlib v0.0.0-20190331212654-76723241ea4e // indirect
 	k8s.io/api v0.19.0
 	k8s.io/apimachinery v0.19.0
 	k8s.io/client-go v0.19.0
 	k8s.io/klog v1.0.0
+	k8s.io/utils v0.0.0-20200729134348-d5654de09c73
 	sigs.k8s.io/controller-runtime v0.6.2
 	sigs.k8s.io/structured-merge-diff v1.0.1-0.20191108220359-b1b620dd3f06 // indirect
 )

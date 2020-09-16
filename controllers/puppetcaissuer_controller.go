@@ -22,8 +22,9 @@ import (
 
 	"github.com/go-logr/logr"
 	core "k8s.io/api/core/v1"
-	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/types"
+	"k8s.io/client-go/tools/record"
+	"k8s.io/utils/clock"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
@@ -37,8 +38,9 @@ import (
 // PuppetCAIssuerReconciler reconciles a PuppetCAIssuer object
 type PuppetCAIssuerReconciler struct {
 	client.Client
-	Log    logr.Logger
-	Scheme *runtime.Scheme
+	Log      logr.Logger
+	Clock    clock.Clock
+	Recorder record.EventRecorder
 }
 
 // +kubebuilder:rbac:groups=certmanager.puppetca,resources=puppetcaissuers,verbs=get;list;watch;create;update;patch;delete
