@@ -21,10 +21,13 @@ import (
 	"fmt"
 
 	"github.com/go-logr/logr"
+	core "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/types"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
+
+	apierrors "k8s.io/apimachinery/pkg/api/errors"
 
 	api "github.com/camptocamp/puppetca-issuer/api/v1alpha1"
 )
