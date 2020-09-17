@@ -71,7 +71,7 @@ spec:
       key: cert
     key:
       key: key
-    caCert:
+    cacert:
       key: cacert
 ```
 
