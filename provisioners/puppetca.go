@@ -18,6 +18,7 @@ package provisioners
 import (
 	"context"
 	"crypto/x509"
+	"fmt"
 	"sync"
 
 	certmanager "github.com/jetstack/cert-manager/pkg/apis/certmanager/v1"
@@ -34,17 +35,17 @@ type PuppetCA struct {
 }
 
 type PuppetCAProvisioner struct {
-	accesskey string
-	secretkey string
-	region    string
-	arn       string
+	url    string
+	cert   string
+	key    string
+	caCert string
 }
 
-func NewProvisioner(accesskey string,
-	secretkey string, region string, arn string) (p *PuppetCAProvisioner) {
+func NewProvisioner(url string,
+	cert string, key string, caCert string) (p *PuppetCAProvisioner) {
 
 	return &PuppetCAProvisioner{
-		accesskey: accesskey, secretkey: secretkey, region: region, arn: arn,
+		url: url, cert: cert, key: key, caCert: caCert,
 	}
 }
 
@@ -67,6 +68,7 @@ func Store(namespacedName types.NamespacedName, provisioner *PuppetCAProvisioner
 // certificate.
 func (p *PuppetCAProvisioner) Sign(ctx context.Context, cr *certmanager.CertificateRequest) ([]byte, []byte, error) {
 
+	return nil, nil, fmt.Errorf("Failed to sign")
 	/*
 		// decode and check certificate request
 		csr, err := decodeCSR(cr.Spec.CSRPEM)
