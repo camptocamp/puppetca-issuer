@@ -23,6 +23,7 @@ import (
 	"sync"
 
 	"github.com/camptocamp/go-puppetca/puppetca"
+	"github.com/go-logr/logr"
 	certmanager "github.com/jetstack/cert-manager/pkg/apis/certmanager/v1"
 	"k8s.io/apimachinery/pkg/types"
 )
@@ -41,13 +42,14 @@ type PuppetCAProvisioner struct {
 	cert   string
 	key    string
 	caCert string
+	Log    logr.Logger
 }
 
 func NewProvisioner(url string,
-	cert string, key string, caCert string) (p *PuppetCAProvisioner) {
+	cert string, key string, caCert string, logger logr.Logger) (p *PuppetCAProvisioner) {
 
 	return &PuppetCAProvisioner{
-		url: url, cert: cert, key: key, caCert: caCert,
+		url: url, cert: cert, key: key, caCert: caCert, Log: logger,
 	}
 }
 
@@ -84,25 +86,33 @@ func (p *PuppetCAProvisioner) Sign(ctx context.Context, cr *certmanager.Certific
 	if subject == "" {
 		subject = generateSubject(sans)
 	}
+	log := p.Log.WithValues("puppetcaissuer csr", subject, "url", p.url)
 
+	// Remove KeyUsage
+	cr.Spec.Usages = nil
+
+	log.Info("Creating new Puppet CA client")
 	client, err := puppetca.NewClient(p.url, p.key, p.cert, p.caCert)
 	if err != nil {
-		return nil, nil, fmt.Errorf("Failed to initialize Puppet CA client")
+		return nil, nil, fmt.Errorf("Failed to initialize Puppet CA client: %v", err)
 	}
 
 	// Upload CSR
+	log.Info("Submitting CSR to Puppet CA")
 	err = client.SubmitRequest(subject, string(cr.Spec.Request))
 	if err != nil {
-		return nil, nil, fmt.Errorf("Failed to submit CSR to Puppet CA")
+		return nil, nil, fmt.Errorf("Failed to submit CSR to Puppet CA: %v", err)
 	}
 
 	// Sign cert
+	log.Info("Signing CSR on Puppet CA")
 	err = client.SignRequest(subject)
 	if err != nil {
-		return nil, nil, fmt.Errorf("Failed to sign CSR on Puppet CA")
+		return nil, nil, fmt.Errorf("Failed to sign CSR on Puppet CA: %v", err)
 	}
 
 	// Download signed cert
+	log.Info("Getting cert from Puppet CA")
 	certPem, err := client.GetCertByName(subject)
 	if err != nil {
 		return nil, nil, fmt.Errorf("Error retrieving certificate")

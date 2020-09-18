@@ -123,7 +123,7 @@ func (r *PuppetCAIssuerReconciler) Reconcile(req ctrl.Request) (ctrl.Result, err
 	}
 
 	p := provisioners.NewProvisioner(string(url), string(cert),
-		string(key), string(caCert))
+		string(key), string(caCert), r.Log)
 
 	issNamespaceName := types.NamespacedName{
 		Namespace: req.Namespace,
