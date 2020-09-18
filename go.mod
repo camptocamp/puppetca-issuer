@@ -3,6 +3,7 @@ module github.com/camptocamp/puppetca-issuer
 go 1.13
 
 require (
+	github.com/camptocamp/go-puppetca v0.0.0-20181017121406-ae8d0ccfb1c4
 	github.com/go-logr/logr v0.2.1
 	github.com/go-logr/zapr v0.2.0 // indirect
 	github.com/jetstack/cert-manager v1.0.1

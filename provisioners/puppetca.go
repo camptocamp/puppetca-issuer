@@ -21,6 +21,7 @@ import (
 	"fmt"
 	"sync"
 
+	"github.com/camptocamp/go-puppetca/puppetca"
 	certmanager "github.com/jetstack/cert-manager/pkg/apis/certmanager/v1"
 	"k8s.io/apimachinery/pkg/types"
 )
@@ -35,6 +36,7 @@ type PuppetCA struct {
 }
 
 type PuppetCAProvisioner struct {
+	client *puppetca.Client
 	url    string
 	cert   string
 	key    string
@@ -67,6 +69,13 @@ func Store(namespacedName types.NamespacedName, provisioner *PuppetCAProvisioner
 // Sign sends the certificate requests to the Step CA and returns the signed
 // certificate.
 func (p *PuppetCAProvisioner) Sign(ctx context.Context, cr *certmanager.CertificateRequest) ([]byte, []byte, error) {
+	if p.client == nil {
+		client, err := puppetca.NewClient(p.url, p.key, p.cert, p.caCert)
+		if err != nil {
+			return nil, nil, fmt.Errorf("Failed to initialize Puppet CA client")
+		}
+		p.client = &client
+	}
 
 	return nil, nil, fmt.Errorf("Failed to sign")
 	/*
