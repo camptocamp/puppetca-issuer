@@ -130,6 +130,10 @@ spec:
   dnsAltNames:
     - localhost
     - foo.com
+  issuerRef:
+    group: certmanager.puppetca
+    kind: PuppetCAIssuer
+    name: puppetca-issuer
 ```
 
 ```
