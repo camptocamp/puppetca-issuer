@@ -127,7 +127,7 @@ spec:
   # Common Name
   commonName: foo.com
   # DNS SAN
-  dnsAltNames:
+  dnsNames:
     - localhost
     - foo.com
   issuerRef:
