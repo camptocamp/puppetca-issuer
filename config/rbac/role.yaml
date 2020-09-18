@@ -1,0 +1,60 @@
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: manager-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+  - patch
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - cert-manager.io
+  resources:
+  - certificaterequests
+  verbs:
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - cert-manager.io
+  resources:
+  - certificaterequests/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - certmanager.puppetca
+  resources:
+  - puppetcaissuers
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - certmanager.puppetca
+  resources:
+  - puppetcaissuers/status
+  verbs:
+  - get
+  - patch
+  - update
