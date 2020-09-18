@@ -91,10 +91,16 @@ func (p *PuppetCAProvisioner) Sign(ctx context.Context, cr *certmanager.Certific
 	}
 
 	// Upload CSR
-	// err = client.SubmitCSR(csr)
+	err = client.SubmitRequest(subject, string(cr.Spec.Request))
+	if err != nil {
+		return nil, nil, fmt.Errorf("Failed to submit CSR to Puppet CA")
+	}
 
 	// Sign cert
-	// err = client.SignCertByName(subject)
+	err = client.SignRequest(subject)
+	if err != nil {
+		return nil, nil, fmt.Errorf("Failed to sign CSR on Puppet CA")
+	}
 
 	// Download signed cert
 	certPem, err := client.GetCertByName(subject)

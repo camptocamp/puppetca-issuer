@@ -2,8 +2,10 @@ module github.com/camptocamp/puppetca-issuer
 
 go 1.13
 
+//replace github.com/camptocamp/go-puppetca => /home/raphink/go/src/github.com/camptocamp/go-puppetca
+
 require (
-	github.com/camptocamp/go-puppetca v0.0.0-20181017121406-ae8d0ccfb1c4
+	github.com/camptocamp/go-puppetca v0.0.0-20200918124539-8951e5cc9d8a
 	github.com/go-logr/logr v0.2.1
 	github.com/go-logr/zapr v0.2.0 // indirect
 	github.com/jetstack/cert-manager v1.0.1
