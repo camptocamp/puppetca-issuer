@@ -1,6 +1,5 @@
 /*
 
-
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -23,6 +22,10 @@ import (
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
+func init() {
+	SchemeBuilder.Register(&PuppetCAIssuer{}, &PuppetCAIssuerList{})
+}
+
 // PuppetCAIssuerSpec defines the desired state of PuppetCAIssuer
 type PuppetCAIssuerSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
@@ -44,6 +47,7 @@ type PuppetCAIssuerStatus struct {
 // +kubebuilder:object:root=true
 
 // PuppetCAIssuer is the Schema for the puppetcaissuers API
+// +kubebuilder:subresource:status
 type PuppetCAIssuer struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
@@ -138,8 +142,4 @@ type PuppetCAIssuerCondition struct {
 	// transition, complementing reason.
 	// +optional
 	Message string `json:"message,omitempty"`
-}
-
-func init() {
-	SchemeBuilder.Register(&PuppetCAIssuer{}, &PuppetCAIssuerList{})
 }
