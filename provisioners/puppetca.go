@@ -88,9 +88,6 @@ func (p *PuppetCAProvisioner) Sign(ctx context.Context, cr *certmanager.Certific
 	}
 	log := p.Log.WithValues("puppetcaissuer csr", subject, "url", p.url)
 
-	// Remove KeyUsage
-	cr.Spec.Usages = nil
-
 	log.Info("Creating new Puppet CA client")
 	client, err := puppetca.NewClient(p.url, p.key, p.cert, p.caCert)
 	if err != nil {
