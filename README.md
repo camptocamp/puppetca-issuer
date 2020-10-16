@@ -134,6 +134,8 @@ spec:
     group: certmanager.puppetca
     kind: PuppetCAIssuer
     name: puppetca-issuer
+  # This is required for the Puppet CA
+  encodeUsagesInRequest: false
 ```
 
 ```
@@ -151,6 +153,7 @@ Spec:
   Dns Names:
     localhost
     foo.com
+  Encode Usages In Request:  false
   Issuer Ref:
     Group:       certmanager.puppetca
     Kind:        PuppetCAIssuer
