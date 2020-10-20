@@ -78,6 +78,9 @@ func (r *CertificateReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error)
 			err := r.Update(context.Background(), crt)
 			return ctrl.Result{}, err
 		}
+
+		// Nothing to do
+		return ctrl.Result{}, nil
 	}
 
 	// Certificate is being deleted
