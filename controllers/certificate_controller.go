@@ -132,7 +132,7 @@ func (r *CertificateReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error)
 		return ctrl.Result{}, err
 	}
 
-	return ctrl.Result{}, r.setStatus(ctx, crt, cmmeta.ConditionTrue, "Cleaned", "Certificate cleaned")
+	return ctrl.Result{}, nil
 }
 
 // SetupWithManager initializes the Certificate controller into the
