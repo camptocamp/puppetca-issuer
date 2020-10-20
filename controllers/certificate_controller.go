@@ -40,8 +40,8 @@ type CertificateReconciler struct {
 	Recorder record.EventRecorder
 }
 
-// +kubebuilder:rbac:groups=cert-manager.io,resources=certificate,verbs=get;list;watch;update
-// +kubebuilder:rbac:groups=cert-manager.io,resources=certificate/status,verbs=get;update;patch
+// +kubebuilder:rbac:groups=cert-manager.io,resources=certificates,verbs=get;list;watch;update
+// +kubebuilder:rbac:groups=cert-manager.io,resources=certificates/status,verbs=get;update;patch
 
 // Reconcile will read and validate a Certificate resource
 // and manage the finalizer to delete it on the Puppet CA
