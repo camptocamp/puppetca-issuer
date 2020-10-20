@@ -22,14 +22,10 @@ spec:
       description: PuppetCAIssuer is the Schema for the puppetcaissuers API
       properties:
         apiVersion:
-          description: 'APIVersion defines the versioned schema of this representation
-            of an object. Servers should convert recognized schemas to the latest
-            internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+          description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
           type: string
         kind:
-          description: 'Kind is a string value representing the REST resource this
-            object represents. Servers may infer this from the endpoint the client
-            submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+          description: 'Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
           type: string
         metadata:
           type: object
@@ -37,43 +33,37 @@ spec:
           description: PuppetCAIssuerSpec defines the desired state of PuppetCAIssuer
           properties:
             provisioner:
-              description: Provisioner contains the Puppet CA certificates provisioner
-                configuration.
+              description: Provisioner contains the Puppet CA certificates provisioner configuration.
               properties:
                 cacert:
                   description: Reference to certificate to access the Puppet CA
                   properties:
                     key:
-                      description: The key of the secret to select from. Must be a
-                        valid secret key.
+                      description: The key of the secret to select from. Must be a valid secret key.
                       type: string
                   type: object
                 cert:
                   description: Reference to certificate to access the Puppet CA
                   properties:
                     key:
-                      description: The key of the secret to select from. Must be a
-                        valid secret key.
+                      description: The key of the secret to select from. Must be a valid secret key.
                       type: string
                   type: object
                 key:
                   description: Reference to certificate to access the Puppet CA
                   properties:
                     key:
-                      description: The key of the secret to select from. Must be a
-                        valid secret key.
+                      description: The key of the secret to select from. Must be a valid secret key.
                       type: string
                   type: object
                 name:
-                  description: The name of the secret in the pod's namespace to select
-                    from.
+                  description: The name of the secret in the pod's namespace to select from.
                   type: string
                 url:
                   description: Reference to URL of the Puppet CA
                   properties:
                     key:
-                      description: The key of the secret to select from. Must be a
-                        valid secret key.
+                      description: The key of the secret to select from. Must be a valid secret key.
                       type: string
                   type: object
               required:
@@ -91,21 +81,17 @@ spec:
           properties:
             conditions:
               items:
-                description: PuppetCAIssuerCondition contains condition information
-                  for the issuer.
+                description: PuppetCAIssuerCondition contains condition information for the issuer.
                 properties:
                   lastTransitionTime:
-                    description: LastTransitionTime is the timestamp corresponding
-                      to the last status change of this condition.
+                    description: LastTransitionTime is the timestamp corresponding to the last status change of this condition.
                     format: date-time
                     type: string
                   message:
-                    description: Message is a human readable description of the details
-                      of the last transition, complementing reason.
+                    description: Message is a human readable description of the details of the last transition, complementing reason.
                     type: string
                   reason:
-                    description: Reason is a brief machine readable explanation for
-                      the condition's last transition.
+                    description: Reason is a brief machine readable explanation for the condition's last transition.
                     type: string
                   status:
                     allOf:
@@ -117,8 +103,7 @@ spec:
                       - "True"
                       - "False"
                       - Unknown
-                    description: Status of the condition, one of ('True', 'False',
-                      'Unknown').
+                    description: Status of the condition, one of ('True', 'False', 'Unknown').
                     type: string
                   type:
                     description: Type of the condition, currently ('Ready').

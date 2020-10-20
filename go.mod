@@ -8,7 +8,7 @@ require (
 	github.com/camptocamp/go-puppetca v0.0.0-20200918132719-43b6b595ceee
 	github.com/go-logr/logr v0.2.1
 	github.com/go-logr/zapr v0.2.0 // indirect
-	github.com/jetstack/cert-manager v1.0.1
+	github.com/jetstack/cert-manager v1.0.3
 	github.com/onsi/ginkgo v1.12.1
 	github.com/onsi/gomega v1.10.1
 	go.uber.org/multierr v1.6.0 // indirect

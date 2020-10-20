@@ -24,6 +24,23 @@ rules:
 - apiGroups:
   - cert-manager.io
   resources:
+  - certificate
+  verbs:
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - cert-manager.io
+  resources:
+  - certificate/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - cert-manager.io
+  resources:
   - certificaterequests
   verbs:
   - get

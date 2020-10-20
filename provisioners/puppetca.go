@@ -77,14 +77,9 @@ func (p *PuppetCAProvisioner) Sign(ctx context.Context, cr *certmanager.Certific
 		return nil, nil, err
 	}
 
-	sans := append([]string{}, csr.DNSNames...)
-	for _, ip := range csr.IPAddresses {
-		sans = append(sans, ip.String())
-	}
-
 	subject := csr.Subject.CommonName
 	if subject == "" {
-		subject = generateSubject(sans)
+		return nil, nil, fmt.Errorf("No common name specified")
 	}
 	log := p.Log.WithValues("puppetcaissuer csr", subject, "url", p.url)
 
@@ -116,6 +111,29 @@ func (p *PuppetCAProvisioner) Sign(ctx context.Context, cr *certmanager.Certific
 	}
 
 	return []byte(certPem), nil, nil
+}
+
+// Cleans the certificate from the Puppet CA
+func (p *PuppetCAProvisioner) Clean(ctx context.Context, crt *certmanager.Certificate) error {
+	subject := crt.Spec.CommonName
+	if subject == "" {
+		return fmt.Errorf("No common name specified")
+	}
+	log := p.Log.WithValues("puppetcaissuer clean cert", subject, "url", p.url)
+
+	log.Info("Creating new Puppet CA client")
+	client, err := puppetca.NewClient(p.url, p.key, p.cert, p.caCert)
+	if err != nil {
+		return fmt.Errorf("Failed to initialize Puppet CA client: %v", err)
+	}
+
+	// Clean Certificate
+	log.Info("Cleaning certificate from Puppet CA")
+	if err = client.DeleteCertByName(subject); err != nil {
+		return fmt.Errorf("Failed to clean certificate from Puppet CA: %v", err)
+	}
+
+	return nil
 }
 
 // decodeCSR decodes a certificate request in PEM format and returns the
