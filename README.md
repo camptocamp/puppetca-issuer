@@ -64,7 +64,7 @@ metadata:
   namespace: puppetca-issuer-system
 spec:
   provisioner:
-    name: puppetca-credentials
+    secretName: puppetca-credentials
     url:
       key: url
     cert:

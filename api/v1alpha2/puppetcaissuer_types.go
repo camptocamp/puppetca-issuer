@@ -75,7 +75,7 @@ type SecretKeySelector struct {
 // PuppetCAProvisioner contains the configuration for requesting certificate from the Puppet CA
 type PuppetCAProvisioner struct {
 	// The name of the secret in the pod's namespace to select from.
-	Name string `json:"name"`
+	Name string `json:"secretName"`
 
 	// Reference to URL of the Puppet CA
 	URLRef SecretKeySelector `json:"url"`
